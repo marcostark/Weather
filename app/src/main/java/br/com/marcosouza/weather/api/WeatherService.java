@@ -7,10 +7,10 @@ import retrofit2.http.Query;
 
 public interface WeatherService {
 
-    String APPID = "903a7eab47f20e0bd580b60ee7760f14";
+    //private static final String URL = "http://api.openweathermap.org/data/2.5";
 
         @GET("weather?")
-        Call<WeatherResponse> getCurrentWeatherData(@Query("lat") String lat, @Query("lon") String lon, @Query(APPID) String app_id);
+        Call<WeatherResponse> getCurrentWeatherData(@Query("lat") String lat, @Query("lon") String lon, @Query("APPID") String app_id);
     }
 
 
