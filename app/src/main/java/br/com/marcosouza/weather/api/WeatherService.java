@@ -1,19 +1,44 @@
 package br.com.marcosouza.weather.api;
 
-import br.com.marcosouza.weather.model.WeatherResponse;
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-public interface WeatherService {
+import java.util.concurrent.TimeUnit;
 
-    //private static final String URL = "http://api.openweathermap.org/data/2.5";
+import okhttp3.OkHttpClient;
 
-//        @GET("weather?")
-//        Call<WeatherResponse> getCurrentWeatherData(@Query("lat") String lat, @Query("lon") String lon, @Query("APPID") String app_id);
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-    @GET("weather?")
-    Call<WeatherResponse> getCurrentWeatherData(@Query("q") String city, @Query("APPID") String app_id, @Query("units") String metric);
+public class WeatherService {
+
+    private final static String BASE_URL = "http://api.openweathermap.org/data/2.5/";
+
+    private static Retrofit retrofit;
+
+    private static Gson gson = new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            .create();
+
+    private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+    private static OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+     .addInterceptor(httpLoggingInterceptor)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS);
+
+    private static OkHttpClient okHttpClient = okHttpClientBuilder.build();
+
+    public static <T> T createService(Class<T> serviceClass){
+        if(retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+        }
+        return retrofit.create(serviceClass);
     }
 
-
+}

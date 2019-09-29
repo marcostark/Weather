@@ -1,9 +1,9 @@
 package br.com.marcosouza.weather;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,11 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.Locale;
-
+import br.com.marcosouza.weather.api.WeatherApi;
 import br.com.marcosouza.weather.api.WeatherService;
-import br.com.marcosouza.weather.api.WeatherClient;
 import br.com.marcosouza.weather.model.WeatherResponse;
+import br.com.marcosouza.weather.util.Helper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,8 +25,6 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static String AppId = "690cac557da1ff012090de70f05d808b";
-    public static String lat = "-48.99";
-    public static String lon = "-28.48";
 
     private View mViewInfoWeather;
 
@@ -41,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextViewTempMin;
     private TextView mTextViewSunset;
     private TextView mTextViewSunrise;
-    private InputMethodManager inputMethodManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         mTextViewTempMin.setText(String.format("%s °", weatherResponse.getTempMin()));
         mTextViewTempMax.setText(String.format("%s °", weatherResponse.getTempMax()));
         mTextViewHumidity.setText(String.format("%s %%", weatherResponse.getHumidity()));
-        mTextViewSunrise.setText(String.valueOf(weatherResponse.getSunrise()));
-        mTextViewSunset.setText(String.valueOf(weatherResponse.getSunset()));
+        mTextViewSunrise.setText(String.valueOf(Helper.convertDate(weatherResponse.getSunrise())));
+        mTextViewSunset.setText(String.valueOf(Helper.convertDate(weatherResponse.getSunset())));
         mTextViewMain.setText(weatherResponse.getMain());
         mTextViewName.setText(String.format("%s - %s",weatherResponse.getName(), weatherResponse.getCountry() ));
 
@@ -95,13 +91,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
     void getCurrentData(String city) {
         mViewInfoWeather.setVisibility(View.GONE);
 
-        WeatherService service = WeatherClient.createService(WeatherService.class);
+        WeatherApi service = WeatherService.createService(WeatherApi.class);
         Call<WeatherResponse> call = service.getCurrentWeatherData(city, AppId, "metric");
 
-        // Solicitação assincrona
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(MainActivity.this);
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("Carregando....");
+        progressDoalog.show();
+
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(@NonNull Call<WeatherResponse> call, @NonNull Response<WeatherResponse> response) {
@@ -112,11 +116,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Cidade não encontrada! Erro: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
+                progressDoalog.dismiss();
             }
 
             @Override
             public void onFailure(@NonNull Call<WeatherResponse> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "Não foi possível carregar os dados", Toast.LENGTH_SHORT).show();
+                progressDoalog.dismiss();
             }
 
         });
