@@ -12,6 +12,9 @@ public class WeatherResponse {
     @SerializedName("weather")
     public ArrayList<Weather> weather = new ArrayList<Weather>();
 
+    @SerializedName("name")
+    public String name;
+
     public long getSunrise(){
         return sys.sunrise;
     }
@@ -20,9 +23,7 @@ public class WeatherResponse {
         return sys.sunset;
     }
 
-    public float getTemp(){
-        return main.humidity;
-    }
+    public float getTemp(){ return main.temp; }
 
     public float getTempMax(){
         return main.temp_max;
@@ -32,15 +33,21 @@ public class WeatherResponse {
         return main.temp_min;
     }
 
-    public String getCountry(){
-        return sys.country;
-    }
+    public String getCountry(){ return sys.country;}
 
     public String getIcon(){
         return weather.get(0).icon;
     }
 
-    public float getHumidity(){
-        return main.humidity;
+    public float getHumidity(){ return main.humidity;}
+
+    public String getMain(){
+        return weather.get(0).main;
     }
+
+    public String getName(){
+        return name;
+    }
+
+
 }
