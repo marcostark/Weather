@@ -36,6 +36,10 @@ public class WeatherResponse {
         return sys.country;
     }
 
+    public String getIcon(){
+        return weather.get(0).icon;
+    }
+
     public float getHumidity(){
         return main.humidity;
     }

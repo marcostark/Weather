@@ -40,9 +40,10 @@
         android:text="@string/search" />
 
     <RelativeLayout
+        android:id="@+id/layout_info_weather"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <TextView
@@ -57,8 +58,8 @@
 
         <ImageView
             android:id="@+id/image_view_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:textStyle="bold"
             android:layout_marginTop="180dp"
             android:text="Cidade"
@@ -68,15 +69,187 @@
             tools:srcCompat="@tools:sample/avatars[1]"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view_icon"
+            android:weightSum="3"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minima"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_view_temp_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14%"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/text_view_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25°"
+                    android:textStyle="bold"
+                    android:textSize="50sp"
+                    android:layout_gravity="center" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_view_temp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="50sp"                    -->
+<!--                    android:text="25°"-->
+<!--                    android:layout_centerHorizontal="true" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Máxima"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_view_temp_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17:45"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/text_view"
+            android:id="@+id/text_view_forecast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="28sp"
-            android:layout_marginTop="300dp"
-            android:text="Tempo"
+            android:textSize="24sp"
+            android:layout_marginTop="380dp"
+            android:text="Ensolarado"
             android:layout_centerHorizontal="true" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_forecast"
+            android:weightSum="3"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Umidade"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_view_humidty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14%"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nascer Do Sol"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_view_sunset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5:15"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pôr do Sol"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_view_sunrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17:45"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 
