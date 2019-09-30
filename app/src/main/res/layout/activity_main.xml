@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#595AD4"
     tools:context=".MainActivity">
 
 
@@ -16,12 +17,15 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="16dp"
         android:layout_toStartOf="@+id/button"
         android:layout_toLeftOf="@+id/button"
-        android:ems="10"
+        android:backgroundTint="#FFFFFF"
+        android:ems="12"
+        android:textColorHint="#FFFFFF"
         android:hint="@string/search_city"
+        android:textColor="#FFFFFF"
         android:inputType="text"
         android:paddingStart="8dp"
         android:paddingLeft="8dp"
@@ -34,7 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
+        android:background="#e91e63"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:text="@string/search" />
@@ -52,8 +59,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="28sp"
-            android:layout_marginTop="100dp"
-            android:text="Cidade"
+            android:layout_marginTop="120dp"
+            android:text="@string/city"
+            android:textColor="#FFFFFF"
             android:layout_centerHorizontal="true"/>
 
         <ImageView
@@ -61,12 +69,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:textStyle="bold"
-            android:layout_marginTop="140dp"
-            android:text="Cidade"
+            android:layout_marginTop="160dp"
             android:scaleType="fitXY"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/app_name"
-            tools:srcCompat="@tools:sample/avatars[1]"
+            tools:srcCompat="@tools:sample/avatars[3]"
             />
 
         <LinearLayout
@@ -74,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/image_view_icon"
             android:weightSum="3"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -86,7 +93,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Minima"
+                    android:text="@string/min"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
@@ -96,6 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="14%"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
@@ -115,18 +124,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="25°"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="30sp"
                     android:layout_gravity="center" />
-
-<!--                <TextView-->
-<!--                    android:id="@+id/text_view_temp"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textSize="50sp"                    -->
-<!--                    android:text="25°"-->
-<!--                    android:layout_centerHorizontal="true" />-->
 
             </LinearLayout>
 
@@ -139,7 +140,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Máxima"
+                    android:text="@string/max"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
@@ -150,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="17:45"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
@@ -162,9 +165,18 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="24sp"
+            android:textColor="#FFFFFF"
             android:layout_marginTop="340dp"
-            android:text="Ensolarado"
             android:layout_centerHorizontal="true" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/text_view_main"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFF" />
 
 
         <LinearLayout
@@ -172,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_main"
             android:weightSum="3"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -184,7 +196,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Umidade"
+                    android:text="@string/humidity"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
@@ -195,6 +208,7 @@
                     android:layout_height="wrap_content"
                     android:text="14%"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
@@ -209,8 +223,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nascer Do Sol"
+                    android:text="@string/sunrise"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
@@ -220,6 +235,7 @@
                     android:layout_height="wrap_content"
                     android:text="5:15"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
@@ -234,8 +250,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pôr do Sol"
+                    android:text="@string/sunset"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
@@ -245,6 +262,7 @@
                     android:layout_height="wrap_content"
                     android:text="17:45"
                     android:textStyle="bold"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:layout_gravity="center" />
 
