@@ -33,5 +33,5 @@ Caso utilize o mecanismo try/catch NÃO deixe o bloco catch vazio
 
 # RESULTADO
 
-<img src="img-1.png" />
-<img src="img-2.png" />
+<img src="img-1.jpg" />
+<img src="img-2.jpg" />
