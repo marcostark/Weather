@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private View mViewInfoWeather;
 
     private ImageView mImageViewIconForecast;
+    private ImageView mImageViewIconCenter;
     private EditText mEditTextCity;
     private TextView mTextViewName;
     private TextView mTextViewHumidity;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mViewInfoWeather = findViewById(R.id.layout_info_weather);
 
         mImageViewIconForecast = findViewById(R.id.image_view_icon);
+        mImageViewIconCenter = findViewById(R.id.image_view_center_icon);
 
         mEditTextCity = findViewById(R.id.edit_text_city);
 
@@ -91,10 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
     void getCurrentData(String city) {
+        mImageViewIconCenter.setVisibility(View.GONE);
         mViewInfoWeather.setVisibility(View.GONE);
 
         WeatherApi service = WeatherService.createService(WeatherApi.class);
